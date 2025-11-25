@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "env": {
+    "NODE_ENV": "production",
+    "JWT_SECRET": "@jwt_secret",
+    "TMDB_API_KEY": "@tmdb_api_key",
+    "VITE_APP_TITLE": "Movie Downloader Web Application",
+    "VITE_APP_LOGO": "/logo.svg",
+    "VITE_OAUTH_PORTAL_URL": "https://oauth.manus.im",
+    "OAUTH_SERVER_URL": "https://api.manus.im"
+  },
+  "functions": {
+    "dist/index.js": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/dist/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/index.js"
+    }
+  ]
+}
